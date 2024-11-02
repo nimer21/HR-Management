@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HR_Management.Data;
 using HR_Management.Models;
+using System.Security.Claims;
 
 namespace HR_Management.Controllers
 {
@@ -22,8 +23,21 @@ namespace HR_Management.Controllers
         // GET: SystemCodes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.SystemCodes.ToListAsync());
+            var systcodes = await _context.SystemCodes
+                .Include(x => x.CreatedBy)
+                .ToListAsync();
+            return View(systcodes);
         }
+        public async Task<IActionResult> SystemCodeDetail(int id)
+        {
+            var systcodes = await _context.SystemCodeDetails
+                .Include(x => x.SystemCode)
+                .Include(x => x.CreatedBy)
+                .Where(x => x.SystemCodeId == id)
+                .ToListAsync();
+            return View(systcodes);
+        }
+        
 
         // GET: SystemCodes/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -54,14 +68,17 @@ namespace HR_Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Code,Description,CreatedById,CreatedOn,ModifiedBy,ModifiedOn")] SystemCode systemCode)
+        public async Task<IActionResult> Create(SystemCode systemCode)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(systemCode);
-                await _context.SaveChangesAsync();
+            //if (ModelState.IsValid)
+            //{
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            systemCode.CreatedOn = DateTime.Now;
+            systemCode.CreatedById = userId;
+            _context.Add(systemCode);
+                await _context.SaveChangesAsync(userId);
                 return RedirectToAction(nameof(Index));
-            }
+            //}
             return View(systemCode);
         }
 

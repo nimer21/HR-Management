@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HR_Management.Data;
 using HR_Management.Models;
+using System.Security.Claims;
 
 namespace HR_Management.Controllers
 {
@@ -58,8 +59,11 @@ namespace HR_Management.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                leaveType.CreatedById = userId;
+                leaveType.CreatedOn = DateTime.Now;
                 _context.Add(leaveType);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(userId);
                 return RedirectToAction(nameof(Index));
             }
             return View(leaveType);
@@ -97,8 +101,14 @@ namespace HR_Management.Controllers
             {
                 try
                 {
-                    _context.Update(leaveType);
-                    await _context.SaveChangesAsync();
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    // Get Old Values
+                    var oldleavetype = await _context.LeaveTypes.FindAsync(id);
+                    leaveType.ModifiedOn = DateTime.Now;
+                    leaveType.ModifiedById = userId;
+                    //_context.Update(leaveType);
+                    _context.Entry(oldleavetype).CurrentValues.SetValues(leaveType);
+                    await _context.SaveChangesAsync(userId);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -145,7 +155,8 @@ namespace HR_Management.Controllers
                 _context.LeaveTypes.Remove(leaveType);
             }
 
-            await _context.SaveChangesAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            await _context.SaveChangesAsync(userId);
             return RedirectToAction(nameof(Index));
         }
 

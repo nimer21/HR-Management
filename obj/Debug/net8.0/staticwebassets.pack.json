@@ -9025,6 +9025,54 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\CompanyLogo_20245026035041_ADEN-Logo.jpg",
+      "PackagePath": "staticwebassets\\img\\CompanyLogo_20245026035041_ADEN-Logo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\EmployeePhoto_20243026093024_2020.09.24_WhatsApp.jpg",
+      "PackagePath": "staticwebassets\\img\\EmployeePhoto_20243026093024_2020.09.24_WhatsApp.jpg"
+    },
+    {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\EmployeePhoto_20243725013749_2022.06.04_WhatsApp_+970 597 540 402.jpg",
+      "PackagePath": "staticwebassets\\img\\EmployeePhoto_20243725013749_2022.06.04_WhatsApp_+970 597 540 402.jpg"
+    },
+    {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\EmployeePhoto_20244424084422_2023.03.27_WhatsApp_+970 598 854 496.jpg",
+      "PackagePath": "staticwebassets\\img\\EmployeePhoto_20244424084422_2023.03.27_WhatsApp_+970 598 854 496.jpg"
+    },
+    {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\LeaveAttachment_20240731070704_599355059 Huda Abed.jpg",
+      "PackagePath": "staticwebassets\\img\\LeaveAttachment_20240731070704_599355059 Huda Abed.jpg"
+    },
+    {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\LeaveAttachment_20241226081205_Screenshot 2024-06-13 194933.png",
+      "PackagePath": "staticwebassets\\img\\LeaveAttachment_20241226081205_Screenshot 2024-06-13 194933.png"
+    },
+    {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\LeaveAttachment_20241231061204_Mai Helmy.jpg",
+      "PackagePath": "staticwebassets\\img\\LeaveAttachment_20241231061204_Mai Helmy.jpg"
+    },
+    {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\LeaveAttachment_20241631061600_2024.10.23_شيشة روني خليل مأمون 2150ج.jpg",
+      "PackagePath": "staticwebassets\\img\\LeaveAttachment_20241631061600_2024.10.23_شيشة روني خليل مأمون 2150ج.jpg"
+    },
+    {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\LeaveAttachment_20241731071754_Rajaa Boukil Rajaa.Boukil@sos-kd.org 00212522835930 Casablanca.jpg",
+      "PackagePath": "staticwebassets\\img\\LeaveAttachment_20241731071754_Rajaa Boukil Rajaa.Boukil@sos-kd.org 00212522835930 Casablanca.jpg"
+    },
+    {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\LeaveAttachment_20241931081950_599355059 Huda Abed.jpg",
+      "PackagePath": "staticwebassets\\img\\LeaveAttachment_20241931081950_599355059 Huda Abed.jpg"
+    },
+    {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\LeaveAttachment_20244031084024_Mai Helmy.jpg",
+      "PackagePath": "staticwebassets\\img\\LeaveAttachment_20244031084024_Mai Helmy.jpg"
+    },
+    {
+      "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\img\\LeaveAttachment_20244531084538_Mai Helmy.jpg",
+      "PackagePath": "staticwebassets\\img\\LeaveAttachment_20244531084538_Mai Helmy.jpg"
+    },
+    {
       "Id": "C:\\Users\\AlsayeN\\source\\repos\\HR-Management\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -8,7 +8,7 @@ namespace HR_Management.Models
         [Display(Name ="Emplyee Name")]
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
-        [Display(Name ="No of Leave Days")]
+        [Display(Name ="Leave Days")]
         public int NoOfDays { get; set; }
         [Display(Name = "Start Date")]
         public DateTime StartDate { get; set; }
@@ -26,5 +26,7 @@ namespace HR_Management.Models
         [Display(Name = "Status")]
         public int StatusId { get; set; }
         public SystemCodeDetail Status { get; set; }
+        [Display(Name = "Approval Notes")]
+        public string? ApprovalNotes { get; set; }
     }
 }

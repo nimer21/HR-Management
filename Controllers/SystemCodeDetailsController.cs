@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HR_Management.Data;
 using HR_Management.Models;
+using System.Security.Claims;
 
 namespace HR_Management.Controllers
 {
@@ -22,8 +23,11 @@ namespace HR_Management.Controllers
         // GET: SystemCodeDetails
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.SystemCodeDetails.Include(s => s.SystemCode);
-            return View(await applicationDbContext.ToListAsync());
+            var systcodes = await _context.SystemCodeDetails
+                .Include(s => s.SystemCode)
+                .Include(s => s.CreatedBy).ToListAsync();
+
+            return View(systcodes);
         }
 
         // GET: SystemCodeDetails/Details/5
@@ -61,8 +65,11 @@ namespace HR_Management.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                _context.Add(systemCodeDetail);
-                await _context.SaveChangesAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            systemCodeDetail.CreatedOn = DateTime.Now;
+            systemCodeDetail.CreatedById = userId;
+            _context.Add(systemCodeDetail);
+                await _context.SaveChangesAsync(userId);
                 return RedirectToAction(nameof(Index));
             //}
             ViewData["SystemCodeId"] = new SelectList(_context.SystemCodes, "Id", "Description", systemCodeDetail.SystemCodeId);

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HR_Management.Data;
 using HR_Management.Models;
+using System.Security.Claims;
 
 namespace HR_Management.Controllers
 {
@@ -58,8 +59,9 @@ namespace HR_Management.Controllers
         {
             if (ModelState.IsValid)
             {
+                var Userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _context.Add(designation);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(Userid);
                 return RedirectToAction(nameof(Index));
             }
             return View(designation);

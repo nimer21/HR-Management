@@ -1,4 +1,6 @@
 using HR_Management.Data;
+using HR_Management.Models;
+using HR_Management.Profiles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +13,27 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
              //ServiceLifetime.Transient);
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddRoles<IdentityRole>()
+//    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddRazorPages();
+
+builder.Services.AddSession();
+//AddAuthentication/AddAuthorization
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+var config = new AutoMapper.MapperConfiguration(options =>
+{
+    options.AllowNullDestinationValues = true;
+    options.AllowNullCollections = true;
+    options.AddProfile(new AutomapperProfiles());
+});
+var mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 
@@ -34,6 +54,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
